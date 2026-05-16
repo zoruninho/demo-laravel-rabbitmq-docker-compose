@@ -39,6 +39,11 @@ api *args:
 
 alias a := api
 
+# Execute a artisan command inside the API container (e.g. just artisan migrate)
+[group('backend')]
+artisan *args:
+    just api php artisan {{ args }}
+
 # Copy self-signed Caddy certificate to ~/Downloads
 [group('backend')]
 get-caddy-certificate:
