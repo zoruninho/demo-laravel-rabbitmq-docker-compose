@@ -1,0 +1,45 @@
+# justfile — project task runner
+# Run `just` or `just --list` to see all available recipes
+
+default:
+    just --list
+
+# -------------------------
+# Docker
+# -------------------------
+
+# Start app (optional: just start <service>)
+[group('docker')]
+start *args:
+    docker compose up -d {{ args }}
+
+# Stop app (optional: just stop <service>)
+[group('docker')]
+stop *args:
+    docker compose down {{ args }}
+
+# Restart app (optional: just restart <service>)
+[group('docker')]
+restart *args:
+    docker compose restart {{ args }}
+
+# Tail container logs (optional: just logs <service>)
+[group('docker')]
+logs *args:
+    docker compose logs -f {{ args }}
+
+# -------------------------
+# Backend
+# -------------------------
+
+# Execute a command inside the API container (e.g. just api php -v)
+[group('backend')]
+api *args:
+    docker compose exec api {{ args }}
+
+alias a := api
+
+# Copy self-signed Caddy certificate to ~/Downloads
+[group('backend')]
+get-caddy-certificate:
+    docker compose cp api:/data/caddy/pki/authorities/local/root.crt ~/Downloads/caddy-root.crt

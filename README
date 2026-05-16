@@ -1,0 +1,12 @@
+## Certificats
+
+Par défaut, Caddy génère un certificat "root" valable 10 ans et génère des certificats intermédiaires et temporaires. Comme Caddy est utilisé via Docker, il est possible qu'il n'arrive pas à installer automatiquement le certificat root sur la machine. Ce qui pousse les navigateurs à afficher un message d'avertissement qu'il faut accepter avant de pouvoir naviguer sur le site.
+
+Pour éviter de devoir le faire à chaque lancement, il est possible d'installer manuellement le certificat root sur sa machine.
+
+Pour le récupérer : `docker cp ${caddy-container-name}:/data/caddy/pki/authorities/local/root.crt ${dossier-cible}`
+Ou la commande `just get-caddy-certificate`
+
+Avec FrankenPHP, le container qui contient caddy est celui de l'api. Le container s'appelle `api`.
+
+Ensuite il faut installer le certificat sur la machine.
