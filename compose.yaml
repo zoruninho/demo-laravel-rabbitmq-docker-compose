@@ -6,8 +6,8 @@ services:
     container_name: api
     environment:
       SERVER_NAME: ${SERVER_NAME:-localhost, :80}
-      # Laravel
       APP_ENV: ${APP_ENV:-local}
+      APP_DEBUG: ${APP_DEBUG:-true}
       DB_CONNECTION: pgsql
       DB_HOST: database
       DB_PORT: 5432
@@ -40,8 +40,8 @@ services:
       - caddy_config:/config
     depends_on:
       - database
-      - redis
       - rabbitmq
+      - redis
     restart: unless-stopped
 
   database:
@@ -53,6 +53,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER:-relaxpp}
     volumes:
       - database_data:/var/lib/postgresql/data:rw
+    restart: unless-stopped
   
   redis:
     image: redis:${REDIS_VERSION:-8}-alpine
@@ -61,6 +62,7 @@ services:
       - 6379:6379
     volumes:
       - redis_data:/data
+    restart: unless-stopped
   
   rabbitmq:
     image: rabbitmq:${RABBITMQ_VERSION:-4.3}-management-alpine
@@ -72,6 +74,7 @@ services:
       - 5672:5672
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
 
 
 volumes:
