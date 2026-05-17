@@ -1,0 +1,61 @@
+{
+  "server_version": "4.3.0",
+  "users": [],
+  "virtual_hosts": [
+    {
+      "name": "/",
+      "tags": [],
+      "description": "Default virtual host",
+      "default_queue_type": null,
+      "metadata": {
+        "tags": [],
+        "description": "Default virtual host",
+        "default_queue_type": "classic"
+      }
+    }
+  ],
+  "permissions": [],
+  "parameters": [],
+  "policies": [],
+  "queues": [
+    {
+      "name": "default",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "audio.transcode",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "relaxpp.audio",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "vhost": "/",
+      "source": "relaxpp.audio",
+      "destination": "audio.transcode",
+      "destination_type": "queue",
+      "routing_key": "audio.transcode",
+      "arguments": {},
+      "properties_key": null
+    }
+  ]
+}
