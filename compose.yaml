@@ -78,7 +78,6 @@ services:
       - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     restart: unless-stopped
 
-
 volumes:
   database_data:
   redis_data:

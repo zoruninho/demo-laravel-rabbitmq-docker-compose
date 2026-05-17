@@ -55,6 +55,11 @@ sync-vendor:
     rm -rf ./api/vendor/*
     docker compose cp api:/app/vendor ./api/
 
+# Export rabbitmq definitions file to local rabbitmq folder
+[group('backend')]
+rabbitmq-export-definitions:
+    docker compose exec rabbitmq rabbitmqadmin --username relaxpp --password '!ChangeMe!' definitions export -- stdout > rabbitmq/definitions.json
+
 # -------------------------
 # Testing
 # -------------------------
