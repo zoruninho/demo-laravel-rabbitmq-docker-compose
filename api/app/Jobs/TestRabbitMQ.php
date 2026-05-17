@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Support\Facades\Log;
 
 class TestRabbitMQ implements ShouldQueue
 {
@@ -15,14 +14,10 @@ class TestRabbitMQ implements ShouldQueue
      */
     public function __construct(
         public string $trackPath,
-    ) {
-    }
+    ) {}
 
     /**
      * Execute the job.
      */
-    public function handle(): void
-    {
-        //Log::info('TestRabbitMQ job exécuté !');
-    }
+    public function handle(): void {}
 }

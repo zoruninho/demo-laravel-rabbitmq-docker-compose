@@ -48,3 +48,18 @@ artisan *args:
 [group('backend')]
 get-caddy-certificate:
     docker compose cp api:/data/caddy/pki/authorities/local/root.crt ~/Downloads/caddy-root.crt
+
+# Copy vendor folder from Docker container to local
+[group('backend')]
+sync-vendor:
+    rm -rf ./api/vendor/*
+    docker compose cp api:/app/vendor ./api/
+
+# -------------------------
+# Testing
+# -------------------------
+
+# Run Laravel Pint (PHP CS Fixer based) (e.g. just pint --test => equivalent to dry-run)
+[group('testing')]
+pint *args:
+    just api ./vendor/bin/pint {{ args }}
