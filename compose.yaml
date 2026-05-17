@@ -74,8 +74,8 @@ services:
       - 5672:5672
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro  
-      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro  
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     restart: unless-stopped
 
 
