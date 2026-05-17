@@ -63,3 +63,22 @@ sync-vendor:
 [group('testing')]
 pint *args:
     just api ./vendor/bin/pint {{ args }}
+
+# Run PHPStan
+[group('testing')]
+phpstan *args:
+    just api ./vendor/bin/phpstan {{ args }} --memory-limit=512M
+
+# Run api tests
+[group('testing')]
+phpunit *args:
+    just artisan test {{ args }}
+
+# Run all api checks (pint + stan + tests)
+[group('testing')]
+test-api:
+    just pint
+    just phpstan
+    just phpunit
+
+alias ta := test-api
