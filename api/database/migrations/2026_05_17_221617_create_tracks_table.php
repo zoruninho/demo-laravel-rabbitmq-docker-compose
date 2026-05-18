@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tracks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->unsignedInteger('duration')->comment('Duration in seconds');
             $table->unsignedBigInteger('size')->comment('File size in bytes');
             $table->enum('status', [
