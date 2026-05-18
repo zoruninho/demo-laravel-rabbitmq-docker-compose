@@ -44,6 +44,11 @@ alias a := api
 artisan *args:
     just api php artisan {{ args }}
 
+# Fresh database with seeding
+[group('backend')]
+db-fresh *args:
+    just artisan migrate:fresh --seed {{ args }}
+
 # Copy self-signed Caddy certificate to ~/Downloads
 [group('backend')]
 get-caddy-certificate:
