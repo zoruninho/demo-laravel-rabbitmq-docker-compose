@@ -31,6 +31,10 @@ Le site est alors accessible directement sur [https://localhost](https://locahos
 **rabbitmq**: fichiers de configuration pour RabbitMQ.  
 **worker**: projet Golang pour certaines tâches précises (transcodage, ...)
 
+## Stack
+
+Laravel 13 / Nuxt 4 / RabbitMQ 4.3 / PostgresSQL 16 / Redis 8 / PHPUnit 12
+
 ## Objectifs du projet
 
 - Tester Laravel 13 et comparer avec Symfony + API Platform
