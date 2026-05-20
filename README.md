@@ -4,15 +4,13 @@ Projet de test pour le contexte suivant : une plateforme hébergeant des pistes 
 
 ## Installation
 
-Il faut débuter par `docker compose build --no-cache`.
+> Conseil: installer Just pour profiter de commandes pratiques. Documentation disponible [ici](https://github.com/casey/just).
 
-Ensuite, un simple `docker compose up -d` suffit à démarrer le projet. Il est aussi possible d'utiliser les raccourcis du justfile et d'utiliser `just start`.
-
-> Pour cela, il faut installer just avant, documentation disponible [ici](https://github.com/casey/just)
-
-Il faut ensuite exécuter `docker compose exec api composer install` (ou `just api composer install`) à chaque démarrage du container. Ceci sera évitable en intégrant un entrypoint.sh à l'avenir.
-
-Lors de la première installation, il faut aussi exécuter `docker compose exec api php artisan migrate` ou `just artisan migrate`.
+- Exécuter `.install.sh` ou `just install`
+- `docker compose build --no-cache`.
+- `docker compose up -d` ou `just start`.
+- Exécuter `docker compose exec api composer install` (ou `just api composer install`) à chaque démarrage du container. Ceci sera évitable en intégrant un entrypoint.sh à l'avenir.
+- Lors de la première installation => `docker compose exec api php artisan migrate` ou `just artisan migrate`.
 
 Le site est alors accessible directement sur [https://localhost](https://locahost) et contient un dashboard Telescope sur [https://localhost/telescope](https://localhost/telescope])
 
