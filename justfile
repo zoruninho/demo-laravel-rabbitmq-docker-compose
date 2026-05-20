@@ -1,8 +1,19 @@
 # justfile — project task runner
 # Run `just` or `just --list` to see all available recipes
 
+set dotenv-load
+
 default:
     just --list
+
+# -------------------------
+# Global
+# -------------------------
+
+[no-exit-message]
+[group('global')]
+install:
+    ./install.sh
 
 # -------------------------
 # Docker
@@ -10,7 +21,7 @@ default:
 
 # Start app (optional: just start <service>)
 [group('docker')]
-start *args:
+start *args: install
     docker compose up -d {{ args }}
 
 # Stop app (optional: just stop <service>)
@@ -63,7 +74,10 @@ sync-vendor:
 # Export rabbitmq definitions file to local rabbitmq folder
 [group('backend')]
 rabbitmq-export-definitions:
-    docker compose exec rabbitmq rabbitmqadmin --username relaxpp --password '!ChangeMe!' definitions export -- stdout > rabbitmq/definitions.json
+    docker compose exec rabbitmq rabbitmqadmin \
+    --username "$RABBITMQ_USER" \
+    --password "$RABBITMQ_PASSWORD" \
+    definitions export --stdout | jq > rabbitmq/definitions.json
 
 # -------------------------
 # Testing
